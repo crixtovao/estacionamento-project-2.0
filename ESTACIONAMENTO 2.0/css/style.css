@@ -1,0 +1,87 @@
+/* Estilos Gerais */
+
+body, h1, h2, h3, h4, p {
+	font-family: 'roboto mono', sans-serif; 
+}
+
+h1 {
+	font-size: 42px;
+	color: #FEC63E;
+	
+	line-height: 55px;
+	letter-spacing: 3px;
+}
+
+h2 {
+	font-size: 18px;
+}
+
+h3{
+	font-size: 40px;
+}
+
+p {
+	font-size: 12px;
+	line-height: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 50%;
+    margin: 2rem auto;
+}
+
+div {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: #eee;
+    padding: 0.7rem;
+    text-align: center;;
+}
+
+input, button {
+    width: 98%;
+    padding: 0.6rem 0.4rem;
+    margin: 0.4rem;
+}
+
+button {
+    text-decoration: none;
+    border: none;
+    display: block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.enviar-botao {
+    background-color: #FEC63E;
+}
+
+.success {
+    background-color: rgb(54, 80, 231);
+    color: rgb(255, 255, 255);
+}
+
+.delete {
+    background-color: rgb(231, 54, 54);
+    color: rgb(255, 255, 255);
+}
+
+
+table {
+    background-color: #eee;
+    margin-top: .9rem;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 5px 25px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
