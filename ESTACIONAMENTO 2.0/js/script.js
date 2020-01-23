@@ -1,11 +1,6 @@
-const btn = document.querySelector ('#enviar');
+(function () {
 
-function renderGarage () {
- const garage = localStorage.garage ? JSON.parse (localStorage.garage) : [];
- document.getElementById('garage').innerHTML = '';
- garage.forEach(c => addCarToGarage(c))
- 
-}
+const btn = document.querySelector ('#enviar');
 
 function convertPeriod (mil) {
   const min = Math.floor (mil / 60000);
@@ -14,11 +9,18 @@ function convertPeriod (mil) {
   return `${min}m e ${sec}s`;
 }
 
+function renderGarage () {
+ const garage = getGarage ();
+ document.getElementById('garage').innerHTML = '';
+ garage.forEach(c => addCarToGarage(c))
+ 
+};
+
 function addCarToGarage (car) {
   const row = document.createElement("tr");
   row.innerHTML= `
-    <td>${car.veiculo.value}</td>
-    <td>${car.placa.value}</td>
+    <td>${car.veiculo}</td>
+    <td>${car.placa}</td>
     <td data-time="${car.time}">${new Date(car.time)
       .toLocaleString('pt-BR', {
       hour: "numeric", minute: "numeric"
@@ -43,15 +45,17 @@ function checkOut(info) {
   const garage = getGarage().filter (c => c.placa !== placa);
   localStorage.garage = JSON.stringify(garage);
 
-}
+  renderGarage();
+
+};
 
 const getGarage = () =>  {return localStorage.garage ? JSON.parse (localStorage.garage) : []}
 
-
+renderGarage();
 
 btn.addEventListener ('click', function (){
-  const x = document.getElementById ('veiculo').value
-  const z = document.getElementById ('placa').value;
+  const veiculo = document.getElementById ('veiculo').value;
+  const placa = document.getElementById ('placa').value;
  
   if (!veiculo || !placa) {
     alert ('Os campos sao essenciais');
@@ -62,7 +66,7 @@ btn.addEventListener ('click', function (){
   const garage = getGarage();
       garage.push (car);
       
-      localStorage.garage = JSON.stringify(garage);
+       localStorage.garage = JSON.stringify(garage);
 
 
     addCarToGarage(car);
@@ -70,9 +74,11 @@ btn.addEventListener ('click', function (){
     document.getElementById ('veiculo').value = "";
     document.getElementById ('placa').value = "";
 
-    document.getElementById('garage').addEventListener ("click", e => {
-          if(e.target.className == "delete");
+});
+
+    document.getElementById('garage').addEventListener ("click", (e) => {
+          if(e.target.className === "delete");
           checkOut(e.target.parentElement.parentElement.cells);
 
-    })
-  });
+    });
+  })();
